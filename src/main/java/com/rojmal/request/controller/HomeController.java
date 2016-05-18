@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.rojmal.EndPoint;
@@ -22,32 +21,20 @@ import com.rojmal.EndPoint;
  */
 @Controller
 @Transactional(propagation = Propagation.REQUIRES_NEW)
-public class LoginController {
+public class HomeController {
 
-	private static final Logger LOGGER = LoggerFactory
-			.getLogger(LoginController.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(HomeController.class);
 
 	@Inject
 	private Environment env;
-
-	@RequestMapping(value = EndPoint.LOGIN, method = RequestMethod.GET)
-	public ModelAndView login(
-			@RequestParam(value = "error", required = false) String error,
-			@RequestParam(value = "logout", required = false) String logout) {
 	
+	@RequestMapping(value = EndPoint.HOME, method = RequestMethod.GET)
+	public ModelAndView login() {
+
+		System.out.println("Mayur kothari in home ");
 		ModelAndView model = new ModelAndView();
 		
-		if (error != null) {
-			model.addObject("error", "Invalid username and password!");
-			System.out.println("Invalid username and password!");
-			
-		}
-		
-		if (logout != null) {
-//			model.addObject("msg", "You've been logged out successfully.");
-			System.out.println("Invalid username and password!");
-		}
-		model.setViewName("login");
+		model.setViewName("home");
 
 		return model;
 	}

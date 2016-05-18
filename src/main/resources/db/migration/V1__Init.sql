@@ -1,7 +1,7 @@
 CREATE TABLE `regisation` (
   `id` VARCHAR(45) NOT NULL,
   `username` VARCHAR(45) NULL,
-  `password` VARCHAR(45) NULL,
+  `password` VARCHAR(255) NULL,
   `role` VARCHAR(45) NULL,
   `openbal` VARCHAR(45) NULL,
   `baltype` VARCHAR(45) NULL,

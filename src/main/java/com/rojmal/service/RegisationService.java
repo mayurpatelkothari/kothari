@@ -8,5 +8,7 @@ import com.rojmal.model.Regisation;
 public interface RegisationService {
 	
 	public Regisation insert(Regisation regisation);
+	
+	public Regisation get(String username);
 
 }

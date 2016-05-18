@@ -3,6 +3,8 @@ package com.rojmal.service.impl;
 import javax.inject.Inject;
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,6 +20,9 @@ public class RegisationServiceImpl implements RegisationService {
 	@Inject
 	RegisationDao regisationDao;
 
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+
 	@Override
 	public Regisation insert(Regisation regisation) {
 
@@ -30,8 +35,10 @@ public class RegisationServiceImpl implements RegisationService {
 					"Code :0001 :: UserName and password is invalid");
 
 		}
+		
+		regisation.setPassword(passwordEncoder.encode(regisation.getPassword()));
 
-		if (regisation.getBaltype()== null
+		if (regisation.getBaltype() == null
 				|| StringUtils.isBlank(regisation.getBaltype().toString())) {
 			throw new IllegalArgumentException(
 					"Code :0002 :: Balance Tyoe is must be specify");
@@ -40,5 +47,8 @@ public class RegisationServiceImpl implements RegisationService {
 
 		return reg;
 	}
-
+@Override
+public Regisation get(String username) {
+	return regisationDao.findByusername(username);
+}
 }

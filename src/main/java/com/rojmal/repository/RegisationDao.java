@@ -13,6 +13,6 @@ import com.rojmal.model.Regisation;
 public interface RegisationDao extends JpaRepository<Regisation, String>,
 		JpaSpecificationExecutor<String> {
 
-	Regisation findByUsername(String userName);
+	Regisation findByusername(String username);
 
 }

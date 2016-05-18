@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.UUID;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -16,13 +15,16 @@ import javax.persistence.TemporalType;
 
 import org.springframework.data.annotation.CreatedDate;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize.Inclusion;
+import org.springframework.security.core.GrantedAuthority;
+
 
 @Entity
 @Table(name = "regisation")
 @JsonSerialize(include = Inclusion.NON_NULL)
-public class Regisation implements Serializable {
+public class Regisation implements Serializable ,GrantedAuthority {
 
 	@Id
 	private String id;
@@ -66,11 +68,14 @@ public class Regisation implements Serializable {
 	}
 
 	public static enum Role {
-		ADMIN, USER;
-
-		public String getAuthority() {
-			return "ROLE_" + name();
-		}
+		ROLE_USER, ROLE_ADMIN
+		
+	}
+	@Override
+	@JsonIgnore
+	public String getAuthority() {
+		System.out.println(this.getRole().name());
+		return this.getRole().name();
 	}
 
 	// boolean hasRole(Role role) {

@@ -10,6 +10,7 @@
     <jsp:include page="header.jsp"></jsp:include>
     <div class="content">
         <div class="leftArea"></div>
+        <h1>Mayur kothari </h1>
         <div class="rightArea" align="center"></div>
     </div>
     <jsp:include page="footer.jsp"></jsp:include>
