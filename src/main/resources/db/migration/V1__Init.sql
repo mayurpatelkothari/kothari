@@ -34,6 +34,7 @@ CREATE TABLE `regisation` (
   `amount` DECIMAL(10,0) NULL,
   `des` MEDIUMTEXT NULL,
   `regid` VARCHAR(255) NULL,
+   status ENUM('PAID','UNPAID') NULL,
   PRIMARY KEY (`id`),
   INDEX `wq_idx` (`regid` ASC),
   INDEX `dswe_idx` (`bankid` ASC),

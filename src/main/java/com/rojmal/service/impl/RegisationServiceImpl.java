@@ -3,6 +3,8 @@ package com.rojmal.service.impl;
 import javax.inject.Inject;
 
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -16,6 +18,9 @@ import com.rojmal.service.RegisationService;
 @Service
 @Transactional(propagation = Propagation.MANDATORY)
 public class RegisationServiceImpl implements RegisationService {
+	
+	
+	private Logger logger = LoggerFactory.getLogger(RegisationServiceImpl.class);
 
 	@Inject
 	RegisationDao regisationDao;
@@ -25,7 +30,9 @@ public class RegisationServiceImpl implements RegisationService {
 
 	@Override
 	public Regisation insert(Regisation regisation) {
-
+		
+		logger.debug("insert() :: api call");
+		
 		if (regisation == null) {
 			throw new IllegalArgumentException("User is not login");
 		}

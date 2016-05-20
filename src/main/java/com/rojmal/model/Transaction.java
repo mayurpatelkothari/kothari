@@ -31,24 +31,26 @@ public class Transaction {
 	@CreatedDate
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date created;
-	
+
 	@Enumerated(EnumType.STRING)
 	private Type ttType;
-	
+
 	@Enumerated(EnumType.STRING)
 	private Paymenttype paymenttype;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "regid")
 	private Regisation regisation;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "bankid")
 	private Bank bank;
-	
+
 	private String des;
-	
-	
+
+	@Enumerated(EnumType.STRING)
+	private Status status;
+
 	public String getId() {
 		return id;
 	}
@@ -84,6 +86,7 @@ public class Transaction {
 	public Paymenttype getPaymenttype() {
 		return paymenttype;
 	}
+
 	public void setPaymenttype(Paymenttype paymenttype) {
 		this.paymenttype = paymenttype;
 	}
@@ -116,5 +119,9 @@ public class Transaction {
 	public void idSet() {
 		this.id = UUID.randomUUID().toString();
 		this.created = new Date();
+	}
+
+	public enum Status {
+		PAID, UNPAID
 	}
 }
