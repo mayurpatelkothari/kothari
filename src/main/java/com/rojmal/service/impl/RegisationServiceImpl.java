@@ -18,9 +18,9 @@ import com.rojmal.service.RegisationService;
 @Service
 @Transactional(propagation = Propagation.MANDATORY)
 public class RegisationServiceImpl implements RegisationService {
-	
-	
-	private Logger logger = LoggerFactory.getLogger(RegisationServiceImpl.class);
+
+	private Logger logger = LoggerFactory
+			.getLogger(RegisationServiceImpl.class);
 
 	@Inject
 	RegisationDao regisationDao;
@@ -30,9 +30,9 @@ public class RegisationServiceImpl implements RegisationService {
 
 	@Override
 	public Regisation insert(Regisation regisation) {
-		
+
 		logger.debug("insert() :: api call");
-		
+
 		if (regisation == null) {
 			throw new IllegalArgumentException("User is not login");
 		}
@@ -42,8 +42,9 @@ public class RegisationServiceImpl implements RegisationService {
 					"Code :0001 :: UserName and password is invalid");
 
 		}
-		
-		regisation.setPassword(passwordEncoder.encode(regisation.getPassword()));
+
+		regisation
+				.setPassword(passwordEncoder.encode(regisation.getPassword()));
 
 		if (regisation.getBaltype() == null
 				|| StringUtils.isBlank(regisation.getBaltype().toString())) {
@@ -54,8 +55,15 @@ public class RegisationServiceImpl implements RegisationService {
 
 		return reg;
 	}
-@Override
-public Regisation get(String username) {
-	return regisationDao.findByusername(username);
-}
+
+	@Override
+	public Regisation get(String username) {
+		return regisationDao.findByusername(username);
+	}
+
+	@Override
+	public Regisation getById(String id) {
+		return regisationDao.getOne(id);
+	}
+
 }

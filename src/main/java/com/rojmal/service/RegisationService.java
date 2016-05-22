@@ -10,5 +10,7 @@ public interface RegisationService {
 	public Regisation insert(Regisation regisation);
 	
 	public Regisation get(String username);
+	
+	public Regisation getById(String id);
 
 }

@@ -10,6 +10,15 @@ public class EndPoint {
 
 	
 	public final static String INSERT_TRANSACTION= "/data/transaction"; // post
+	public final static String UPDATE_TRANSACTION= "/data/{regisationId}/transaction/{id}/update"; // put
+	
+	public final static String DELETE_TRANSACTION= "/data/{regisationId}/transaction/{id}/delete"; // delete
+	public final static String GET_TRANSACTION= "/data/{regisationId}/transaction/{id}/get"; // get
+	public final static String GETS_TRANSACTION= "/data/{regisationId}/transaction/{id}/gets"; // delete
+
+
+
+
 	
 	public final static String LOGIN = "/login";
 	

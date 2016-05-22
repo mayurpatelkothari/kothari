@@ -98,6 +98,18 @@ public class Transaction {
 	public void setBank(Bank bank) {
 		this.bank = bank;
 	}
+	public Regisation getRegisation() {
+		return regisation;
+	}
+	public void setRegisation(Regisation regisation) {
+		this.regisation = regisation;
+	}
+	public Status getStatus() {
+		return status;
+	}
+	public void setStatus(Status status) {
+		this.status = status;
+	}
 
 	public String getDes() {
 		return des;
