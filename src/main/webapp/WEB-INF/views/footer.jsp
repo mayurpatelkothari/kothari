@@ -1,2 +1,12 @@
+<!DOCTYPE html>
+<html>
+<body>
 
-<div class="footer">My Site 2016</div>
+<footer>
+  <p>Contact information: <a href="mailto:kotharimayur9@gmail.com">kotharimayur9@gmail.com</a>.</p>
+</footer>
+
+
+</body>
+</html>
+

@@ -4,9 +4,24 @@ public class EndPoint {
 
 	public final static String INSERT_REGISATION= "/data/regisation"; // post1
 	
-	public final static String INSERT_BANK= "/data/bank"; // post
+	public final static String UPDATE_REGISATION= "/data/regisation/{id}/update"; // post1
 	
-	public final static String INSERT_PARTY= "/data/party"; // post
+	public final static String GET_REGISATION= "/data/regisation/{id}/get"; // post1
+
+
+
+
+	
+	public final static String INSERT_BIRTH_REGISATION= "/data/birthregister";
+	
+	public final static String UPDATE_BIRTH_REGISATION= "/data/birthregister/{id}/update";
+	
+	public final static String DELETE_BIRTH_REGISATION= "/data/birthregister/{id}/delete";
+
+	public final static String GET_BIRTH_REGISATION= "/data/birthregister/{id}/get";
+	
+	public final static String GETALL_BIRTH_REGISATION= "/data/birthregister/getAll";
+
 
 	
 	public final static String INSERT_TRANSACTION= "/data/transaction"; // post
@@ -34,6 +49,9 @@ public final static String SCHEDULE_JOB_TEST = "/data/schedule/job/test"; // GET
 	// Login
 	public final static String INDEX = "/"; // GET
 	public final static String HOME = "/home"; // GET
+	public final static String SINUP = "/signup"; // GET
+	public final static String VIEW = "/view"; // GET
+	public final static String FORGOTPASSWORD = "/forgotpassword"; // GET
 	public final static String REGISATION = "/signup"; // GET
 	public final static String OFFER = "/offer"; // GET
 	public final static String PRICING = "/pricing"; // GET

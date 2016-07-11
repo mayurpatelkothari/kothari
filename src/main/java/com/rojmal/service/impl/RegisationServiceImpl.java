@@ -11,9 +11,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.rojmal.model.BirthRegister;
 import com.rojmal.model.Regisation;
+import com.rojmal.model.Regisation.Role;
 import com.rojmal.repository.RegisationDao;
+import com.rojmal.security.SecurityRegisteredUserManager;
 import com.rojmal.service.RegisationService;
+import com.rojmal.util.BeanMapper;
 
 @Service
 @Transactional(propagation = Propagation.MANDATORY)
@@ -24,9 +28,14 @@ public class RegisationServiceImpl implements RegisationService {
 
 	@Inject
 	RegisationDao regisationDao;
-
 	@Autowired
 	private PasswordEncoder passwordEncoder;
+
+	@Inject
+	BeanMapper beanMapper;
+
+	@Inject
+	SecurityRegisteredUserManager securityRegisteredUserManager;
 
 	@Override
 	public Regisation insert(Regisation regisation) {
@@ -42,15 +51,10 @@ public class RegisationServiceImpl implements RegisationService {
 					"Code :0001 :: UserName and password is invalid");
 
 		}
+		regisation.setRole(Role.ROLE_USER);
 
 		regisation
 				.setPassword(passwordEncoder.encode(regisation.getPassword()));
-
-		if (regisation.getBaltype() == null
-				|| StringUtils.isBlank(regisation.getBaltype().toString())) {
-			throw new IllegalArgumentException(
-					"Code :0002 :: Balance Tyoe is must be specify");
-		}
 		Regisation reg = regisationDao.save(regisation);
 
 		return reg;
@@ -58,12 +62,44 @@ public class RegisationServiceImpl implements RegisationService {
 
 	@Override
 	public Regisation get(String username) {
-		return regisationDao.findByusername(username);
+
+		Regisation regisation = regisationDao.findByusername(username);
+		if (regisation == null) {
+			return null;
+		}
+
+		return beanMapper.map(regisation, Regisation.class, "regisation-1");
+
 	}
 
 	@Override
 	public Regisation getById(String id) {
+		// Regisation regi = regisationDao.findOne(id);
+		// if (regi == null) {
+		// throw new IllegalAccessError("User not login");
+		// }
 		return regisationDao.getOne(id);
+	}
+
+	@Override
+	public Regisation currentUser() {
+
+		String userId = securityRegisteredUserManager
+				.getCurrentRegisteredUserId();
+
+		Regisation regisation = regisationDao.findOne(userId);
+		return regisation;
+	}
+
+	@Override
+	public Regisation update(Regisation regisation) {
+		Regisation regi = this.currentUser();
+		if (regi == null) {
+			throw new IllegalArgumentException("User is not login");
+		}
+		regisation.setId(regi.getId());
+
+		return regisationDao.save(regisation);
 	}
 
 }

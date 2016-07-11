@@ -21,51 +21,20 @@ import com.rojmal.EndPoint;
  */
 @Controller
 @Transactional(propagation = Propagation.REQUIRES_NEW)
-public class HomeController {
+public class IndexController {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(HomeController.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(IndexController.class);
 
 	@Inject
 	private Environment env;
 	
-	@RequestMapping(value = EndPoint.HOME, method = RequestMethod.GET)
+	@RequestMapping(value = EndPoint.INDEX, method = RequestMethod.GET)
 	public ModelAndView login() {
 
 		ModelAndView model = new ModelAndView();
 		
-		model.setViewName("home");
+		model.setViewName("index");
 
 		return model;
 	}
-	
-	@RequestMapping(value = EndPoint.SINUP, method = RequestMethod.GET)
-	public ModelAndView sinup() {
-
-		ModelAndView model = new ModelAndView();
-		
-		model.setViewName("signup");
-
-		return model;
-	}
-	
-	@RequestMapping(value = EndPoint.VIEW, method = RequestMethod.GET)
-	public ModelAndView view() {
-
-		ModelAndView model = new ModelAndView();
-		
-		model.setViewName("view");
-
-		return model;
-	}
-	
-	@RequestMapping(value = EndPoint.FORGOTPASSWORD, method = RequestMethod.GET)
-	public ModelAndView forgotpassword() {
-
-		ModelAndView model = new ModelAndView();
-		
-		model.setViewName("forgotpassword");
-
-		return model;
-	}
-	
 }

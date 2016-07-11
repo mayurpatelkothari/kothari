@@ -46,10 +46,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().anyRequest().permitAll().and().csrf()
+		http.authorizeRequests().antMatchers("/data/bank").hasAuthority("ROLE_USER")
+		.antMatchers("/home").hasAuthority("ROLE_USER")
+		.and().csrf()
 				.disable().formLogin().loginPage("/login")
 				.failureUrl("/login?error").successHandler(success).permitAll()
-				.and().logout().permitAll().and().exceptionHandling()
+				.and().logout().logoutSuccessUrl("/login?logout").and().exceptionHandling()
 				.accessDeniedPage("/data/login-error");
 	}
 

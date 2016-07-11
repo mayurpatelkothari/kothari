@@ -2,29 +2,33 @@ package com.rojmal.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.security.core.GrantedAuthority;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize.Inclusion;
-import org.springframework.security.core.GrantedAuthority;
-
 
 @Entity
 @Table(name = "regisation")
 @JsonSerialize(include = Inclusion.NON_NULL)
-public class Regisation implements Serializable ,GrantedAuthority {
+public class Regisation implements Serializable, GrantedAuthority {
 
 	@Id
 	private String id;
@@ -35,13 +39,13 @@ public class Regisation implements Serializable ,GrantedAuthority {
 	@Enumerated(EnumType.STRING)
 	private Role role;
 
-	private Double openbal;
-
-	private BalType baltype;
-
 	@CreatedDate
 	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "created")
 	private Date created;
+
+	@OneToMany(mappedBy = "regisation", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<BirthRegister> birthRegister;
 
 	public String getUsername() {
 		return username;
@@ -69,12 +73,12 @@ public class Regisation implements Serializable ,GrantedAuthority {
 
 	public static enum Role {
 		ROLE_USER, ROLE_ADMIN
-		
+
 	}
+
 	@Override
 	@JsonIgnore
 	public String getAuthority() {
-		System.out.println(this.getRole().name());
 		return this.getRole().name();
 	}
 
@@ -92,24 +96,8 @@ public class Regisation implements Serializable ,GrantedAuthority {
 		this.created = new Date();
 	}
 
-	public Double getOpenbal() {
-		return openbal;
-	}
-
-	public void setOpenbal(Double openbal) {
-		this.openbal = openbal;
-	}
-
 	public enum BalType {
 		CREDIT, DEBIT
-	}
-
-	public BalType getBaltype() {
-		return baltype;
-	}
-
-	public void setBaltype(BalType baltype) {
-		this.baltype = baltype;
 	}
 
 	public String getId() {
@@ -127,4 +115,13 @@ public class Regisation implements Serializable ,GrantedAuthority {
 	public void setCreated(Date created) {
 		this.created = created;
 	}
+
+	public List<BirthRegister> getBirthRegister() {
+		return birthRegister;
+	}
+
+	public void setBirthRegister(List<BirthRegister> birthRegister) {
+		this.birthRegister = birthRegister;
+	}
+
 }

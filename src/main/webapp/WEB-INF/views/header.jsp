@@ -21,7 +21,7 @@
             </c:if>
         </form>
     </div>
-    <script src="js/jquery-1.7.1.min.js"></script>
-    <script src="js/main.js"></script>
+    <script src="static/js/jquery-1.7.1.min.js"></script>
+    <script src="static/js/main.js"></script>
 </body>
 </html>

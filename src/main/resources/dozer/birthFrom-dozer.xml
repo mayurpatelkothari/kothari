@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozer.sourceforge.net" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://dozer.sourceforge.net http://dozer.sourceforge.net/schema/beanmapping.xsd">
+	<mapping map-id="birthfrom-1" wildcard="false">
+		<class-a>com.rojmal.model.BirthRegister</class-a>
+		<class-b>com.rojmal.model.BirthRegister</class-b>
+
+		<field>
+			<a>id</a>
+			<b>id</b>
+		</field>
+
+		<field>
+			<a>firstname</a>
+			<b>firstname</b>
+		</field>
+		<field>
+			<a>lastname</a>
+			<b>lastname</b>
+		</field>
+		<field>
+			<a>sex</a>
+			<b>sex</b>
+		</field>
+		<field>
+			<a>dateofbirth</a>
+			<b>dateofbirth</b>
+		</field>
+		<field>
+			<a>nameoffather</a>
+			<b>nameoffather</b>
+		</field>
+		<field>
+			<a>nameofmother</a>
+			<b>nameofmother</b>
+		</field>
+		<field>
+			<a>birthpalce</a>
+			<b>birthpalce</b>
+		</field>
+		<field>
+			<a>parmanentaddress</a>
+			<b>parmanentaddress</b>
+		</field>
+		<field>
+			<a>registrationno</a>
+			<b>registrationno</b>
+		</field>
+		<field>
+			<a>remarks</a>
+			<b>remarks</b>
+		</field>
+		<field>
+			<a>dateofregistration</a>
+			<b>dateofregistration</b>
+		</field>
+		<field>
+			<a>zone</a>
+			<b>zone</b>
+		</field>
+		<field>
+			<a>ward</a>
+			<b>ward</b>
+		</field>
+		<field>
+			<a>birthmonth</a>
+			<b>birthmonth</b>
+		</field>
+		<field>
+			<a>sun</a>
+			<b>sun</b>
+		</field>
+
+	</mapping>
+</mappings>
